@@ -1,0 +1,55 @@
+.productPreview {
+  margin: 1rem 0 !important;
+}
+
+div.mediumImage > a > img {
+  left: 50%;
+  transform: translateX(50%);
+}
+
+div.mediumImage {
+  min-height: 5rem;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.productLabel {
+  font-weight: bold !important;
+}
+
+.addCartButton {
+  background-color: rgb(117, 199, 117) !important;
+}
+
+.productDescription {
+  display: block;
+  color: hsla(100, 100%, 0%, 0.5) !important;
+}
+
+.productName {
+  font-size: 1.25rem !important;
+}
+
+.productCard {
+  height: 100%;
+  background-color: hsla(0, 0%, 77%, 0.1) !important;
+}
+
+.dollars:before {
+  content: '$';
+}
+
+.crossedout {
+  text-decoration: line-through;
+  color: hsl(0, 50%, 45%);
+}
+
+.sale {
+  font-size: 1.25rem !important;
+  color: hsl(130, 50%, 45%);
+}
+
+.sale:after {
+  content: 'Oferta!';
+  margin-left: 1em;
+}

@@ -1,0 +1,14 @@
+.appTitle {
+  font-size: 2rem !important;
+  color: white !important;
+}
+
+.appBar {
+  background-color: hsl(60, 60%, 60%);
+}
+
+.menuIcon {
+  width: 30px !important;
+  height: 30px !important;
+  color: #fff;
+}
