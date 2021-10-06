@@ -12,13 +12,21 @@ import {
 
 interface ProductInfoProps {
   product: Product;
+  colors: string[];
+  selectedColor: string;
+  changedColor(event: any): void;
 }
 
 /**
  * Product info elements
  * @returns ProductInfo UI elements
  */
-const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
+const ProductInfo: React.FC<ProductInfoProps> = ({
+  product,
+  colors,
+  selectedColor,
+  changedColor,
+}) => {
   let listPrice = 0.0;
   if (
     product !== undefined &&
@@ -37,21 +45,19 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
     salePrice = product.childSkus[0].salePrice;
   }
 
-  let colors: any[] = [];
+  let colorsArray: any[] = [];
   let sizes: any[] = [];
 
-  let selectedColor = '';
+  colors.forEach((color) => {
+    colorsArray.push(<MenuItem value={color}>{color}</MenuItem>);
+  });
+
   let selectedSize = '';
   if (
     product !== undefined &&
     product.childSkus !== undefined &&
     product.childSkus[0]
   ) {
-    selectedColor = product.childSkus[0].color;
-    product.childSkus.forEach((sku) => {
-      colors.push(<MenuItem value={sku.color}>{sku.color}</MenuItem>);
-    });
-
     selectedSize = product.childSkus[0].size;
     product.childSkus.forEach((sku) => {
       sizes.push(<MenuItem value={sku.size}>{sku.size}</MenuItem>);
@@ -59,7 +65,11 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
   }
 
   let comments: any[] = [];
-  if (product !== undefined && product.comments.length > 0) {
+  if (
+    product !== undefined &&
+    product.comments &&
+    product.comments.length > 0
+  ) {
     product.comments.forEach((comment) => {
       comments.push(
         <Grid item className="comment">
@@ -70,8 +80,6 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
       );
     });
   }
-
-  console.log(product);
 
   return (
     <div className="productInfo">
@@ -110,8 +118,9 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
               id="color-select"
               label="Color"
               value={selectedColor}
+              onChange={changedColor}
             >
-              {colors}
+              {colorsArray}
             </Select>
           </Grid>
           <Grid item lg={2}>
